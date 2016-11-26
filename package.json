@@ -1,0 +1,26 @@
+{
+  "name": "chiper",
+  "version": "1.0.0",
+  "description": "Chiper is an application based on the tutorial of Tutsplus - Build a Microblogging App With Flux and React",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoPires/chiper.git"
+  },
+  "author": "marcofspires@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcoPires/chiper/issues"
+  },
+  "homepage": "https://github.com/MarcoPires/chiper#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.1.0",
+    "reactify": "^1.1.1"
+  }
+}

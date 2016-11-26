@@ -1,11 +1,11 @@
 var gulp       = require('gulp');
 var browserify = require('gulp-browserify');
 var concat     = require('gulp-concat');
-var pumber     = require('gulp-pumber');
+var plumber    = require('gulp-plumber');
 
 gulp.task('browserify', function(){
 	gulp.src('src/main.js')
-		.pipe(pumber())
+		.pipe(plumber())
 		.pipe(browserify({ transform: 'reactify', debug: true }))
 		.pipe(gulp.dest('public'));
 });

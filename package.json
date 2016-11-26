@@ -4,7 +4,8 @@
   "description": "Chiper is an application based on the tutorial of Tutsplus - Build a Microblogging App With Flux and React",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "gulp-concat": "^2.6.1",
     "gulp-plumber": "^1.1.0",
     "reactify": "^1.1.1"
+  },
+  "dependencies": {
+    "skeleton-css": "^2.0.4"
   }
 }

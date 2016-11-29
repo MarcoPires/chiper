@@ -5,10 +5,6 @@ var passport       = require('passport');
 var localStrategy  = require('passport-local');
 var locallyDB      = require('locallydb');
 var crypto         = require('crypto');
-var router         = require('express').Router();
-var expressSession = require('express-session');
-var bodyParser     = require('body-parser');
-var cookieParser   = require('cookie-parser');
 
 
 
@@ -21,8 +17,37 @@ var users = db.collection('users');
  * @return {string} hash         
  */
 var hash = function(password){
-	return crypto.createhash('sha512').update(password).digest('hex');
+	return crypto.createHash('sha512').update(password).digest('hex');
 };
+
+/**
+ * Ensure that user is logged in to access protected routes
+ * @param  {object}   req  
+ * @param  {object}   res  
+ * @param  {Function} next 
+ */
+var loginRequired = function(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	};
+
+	res.redirect('/login');
+};
+
+
+var makeUserSafe = function(user){
+	var safeUser = {},
+		safeKeys = ['cid', 'fullname', 'email', 'username', 'following'];
+
+	safeKeys.forEach(function(key){
+		safeUser[key] = user[key];
+	});
+
+	return safeUser;
+};
+
+
+
 
 /**
  * Check if is a valid user, and send it to localStrategy
@@ -65,37 +90,8 @@ passport.deserializeUser(function(cid, done){
 });
 
 
-/**
- * This will parse any url with encoded data into a object,
- * it will be used in the login page
- */
-router.use(bodyParser.urlencoded({ extended: true }));
-
-/**
- * Will convert the data sended to the API into JSON
- */
-router.use(bodyParser.json());
-
-/**
- * Parse the cookie sended in the requests so we can track the user serialized token
- */
-router.use(cookieParser());
-
-
-router.use(expressSession({
-	secret            : 'oafajlçfaojiwa892e8ydhmcapw554afag6',
-	resave            : false,
-	saveUninitialized : true
-}));
-
-/**
- * Bind the passport middleware with the express
- */
-router.use(passport.initialize());
-router.use(passport.session());
-
-router.get('/login', function(req, res){
-	res.render('login');
-});
-
-exports.routers = router;
+exports.passport      = passport;
+exports.users         = users;
+exports.hash          = hash;
+exports.loginRequired = loginRequired;
+exports.makeUserSafe  = makeUserSafe;

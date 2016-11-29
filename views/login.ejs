@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chiper</title>
+	<link rel="stylesheet" href="/bundle.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>Chiper</h1>
+		</div>
+		<div class="row">
+			
+			<div class="six columns">
+				<h2>Log In</h2>
+
+				<form action="/login" method='POST'>
+					<p>
+						<label for="login-username">Username</label>
+						<input type="text" id="login-username" name="username" class="u-full-width">
+					</p>
+					<p>
+						<label for="login-password">Password</label>
+						<input type="password" id="login-password" name="password" class="u-full-width">
+					</p>
+					<p>
+						<button class="button-primary">Login</button>
+					</p>
+				</form>
+			</div>
+
+			<div class="six columns">
+				<h2>Sign Up</h2>
+
+				<form action="/signup" method='POST'>
+					<p>
+						<label for="fullname">Full name</label>
+						<input type="text" id="fullname" name="fullname" class="u-full-width">
+					</p>
+					<p>
+						<label for="email">Email (Will be used to get your Gravatar)</label>
+						<input type="email" id="email" name="email" class="u-full-width">
+					</p>
+					<p>
+						<label for="login-username">Username</label>
+						<input type="text" id="login-username" name="username" class="u-full-width">
+					</p>
+					<p>
+						<label for="login-password">Password</label>
+						<input type="password" id="login-password" name="password" class="u-full-width">
+					</p>
+					<p>
+						<button class="button-primary">Sign Up</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/main.js"></script>
+</body>
+</html>

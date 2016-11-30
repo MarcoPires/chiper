@@ -46,4 +46,4 @@ router.use(expressSession({
 router.use(login.passport.initialize());
 router.use(login.passport.session());
 
-exports.router = router;
+exports.routers = router;

@@ -1,8 +1,12 @@
 /**
+ * npm modules
+ */
+var router = require('express').Router();
+
+/**
  * local modules
  */
 var login = require('./login');
-var router = require('./routerMiddlewares').router;
 
 
 

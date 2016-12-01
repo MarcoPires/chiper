@@ -34,6 +34,7 @@ Object.keys(constants).forEach(function (key) {
      * Create a dispatch for each action type
      */
     exports[funcName] = function (data) {
+    	console.log("1) Action triggered -> " + funcName + ": ", data);
         dispatcher.dispatch({
             actionType: constants[key],
             data: data

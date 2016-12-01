@@ -1,8 +1,7 @@
 /**
  * local modules
  */
-var events = require('events');
-var store = require('./stores/store');
+var httpService = require('./httpService');
+var chirps = require('./stores/chirps');
 
-console.log('Hello World');
-console.log(events);
+httpService.fetchChirps();

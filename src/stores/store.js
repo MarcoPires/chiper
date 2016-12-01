@@ -66,17 +66,29 @@ exports.extend = function(methods){
 		actions : {}
 	};
 
+	/**
+	 * Extends the class methods
+	 */
 	assign(store, EventEmitterProto, storeMethods, methods);
-
+	
+	/**
+	 * Class constructor
+	 */
 	store.init();
 
+	/**
+	 * Any action dispatched will past here.
+	 * Verify if is any compatible action binded in the store, and call it.
+	 */
 	dispatcher.register(function(action){
-		var action = store.actions[action.actionType];
+		console.log("2) Dispatcher triggered -> Store listening: " + store.instanceOf);
+		var bindedAction = store.actions[action.actionType];
 		
-		if(!action) return this;
+		if(!bindedAction) return this;
 
-		action.forEach(function(callback){
-			callback.call(null, action.data);
+		bindedAction.forEach(function(callback){
+			console.log("3) Store binded action -> " + action.actionType + ": " + store.instanceOf + ":" + (callback.name ? callback.name : callback.toString()));
+			callback.call(store, action.data);
 		});
 	});
 

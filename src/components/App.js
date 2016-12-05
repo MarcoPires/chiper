@@ -5,8 +5,9 @@ var React = require('react');
 
 
 
+
 var App = React.createClass({
-	render: function(children){
+	render: function(){
 		return (
 			<div>
 				<div className='row'>
@@ -19,7 +20,7 @@ var App = React.createClass({
 						Nav
 					</div>
 					<div className='nine columns'>
-						{ children }
+						{ this.props.children }
 					</div>
 				</div>
 			</div>

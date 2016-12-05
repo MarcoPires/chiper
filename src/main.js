@@ -15,18 +15,21 @@ var chirps      = require('./stores/chirps');
  * Local module components
  */
 var App = require('./components/App');
+var Home = require('./components/Home');
 
 
-
-
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
+var Router     = ReactRouter.Router;
+var Route      = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
 var routes = (
-	<Route path="/" component={ App }>
-	</Route>
+	<Router history={ ReactRouter.browserHistory }>
+		<Route path="/" component={ App }>
+			<IndexRoute component={ Home } />
+		</Route>
+	</Router>
 );
 
 httpService.fetchChirps();
 
-ReactDOM.render( <Router history={ ReactRouter.browserHistory } >{ routes }</Router>, 
+ReactDOM.render(routes, 
 	document.getElementById('app'));

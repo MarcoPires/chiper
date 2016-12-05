@@ -26,6 +26,7 @@ var routes = (
 	<Router history={ ReactRouter.browserHistory }>
 		<Route path="/" component={ App }>
 			<IndexRoute component={ Home } />
+			<Route name="user" path="/user/:id" component={ App } />
 		</Route>
 	</Router>
 );

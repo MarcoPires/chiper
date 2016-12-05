@@ -35,7 +35,6 @@ var Home = React.createClass({
 	},
 
 	onChange: function(){
-		console.log("AKI")
 		this.setState(this.getInitialState());
 	},
 

@@ -17,6 +17,7 @@ var chirps      = require('./stores/chirps');
 var App = require('./components/App');
 var Home = require('./components/Home');
 
+httpService.fetchChirps();
 
 var Router     = ReactRouter.Router;
 var Route      = ReactRouter.Route;
@@ -28,8 +29,6 @@ var routes = (
 		</Route>
 	</Router>
 );
-
-httpService.fetchChirps();
 
 ReactDOM.render(routes, 
 	document.getElementById('app'));

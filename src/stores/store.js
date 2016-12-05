@@ -122,6 +122,7 @@ exports.extend = function(methods){
 		bindedAction.forEach(function(callback){
 			console.log("3) Store binded action -> " + action.actionType + ": " + store.instanceOf + ":" + (callback.name ? callback.name : callback.toString()));
 			callback.call(store, action.data);
+			store.emitChange();
 		});
 	});
 

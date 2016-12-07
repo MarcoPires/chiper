@@ -13,9 +13,16 @@ var dispatcher = require('./dispatcher');
 var constants  = require('./constants');
 
 dispatcher.register(function(action){
+
 	switch(action.actionType){
 		case constants.CHIRP:
 			httpService.saveChirp(action.data);
+			break;
+		case constants.FOLLOW:
+			httpService.follow(action.data);
+			break;
+		case constants.UNFOLLOW:
+			httpService.unfollow(action.data);
 			break;
 	};
 });
@@ -36,6 +43,19 @@ var httpService = {
 
 		post('/api/chirps', { text: text }).then( actions.chirped.bind(actions) );
 	},
+
+	follow: function(id){
+		if(id === undefined) return;
+
+		post('/api/follow/' + id).then( actions.followed.bind(actions) );
+	},
+
+	unfollow: function(id){
+		console.log("ENTRA", id)
+		if(id === undefined) return;
+
+		post('/api/unfollow/' + id).then( actions.unfollowed.bind(actions) );
+	},
 };
 
 var get = function(url){
@@ -52,6 +72,7 @@ var get = function(url){
 };
 
 var post = function(url, body){
+	console.log("AKI")
 	return fetch(url, {
 		method      : 'POST',
 		credentials : 'include',

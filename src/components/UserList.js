@@ -13,7 +13,8 @@ var userStore = require('../stores/users');
 /**
  * Local module components
  */
-var Box = require('./Box');
+var Box          = require('./Box');
+var FollowButton = require('./FollowButton');
 
 
 
@@ -22,8 +23,8 @@ var UserList = React.createClass({
 
 	getInitialState() {
 		return {
-			users : userStore.getAll(),
-			user  : userStore.getCurrentUser()
+			users       : userStore.getAll(),
+			currentUser : userStore.getCurrentUser()
 		};
 	},
 
@@ -47,9 +48,11 @@ var UserList = React.createClass({
 		 * @return {array} users                
 		 */
 		var items = this.state.users.map(function(user){
-			if(this.state.user.cid !== user.cid) return null;
+			if(this.state.currentUser.cid === user.cid) return null;
 			return (
-				<Box key={ user.cid } user={ user }> @{ user.username } </Box>
+				<Box key={ user.cid } user={ user }>
+					<FollowButton userId = { user.cid }/>
+				</Box>
 			);
 		}.bind(this));
 

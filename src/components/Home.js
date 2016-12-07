@@ -23,7 +23,7 @@ var Home = React.createClass({
 
 	getInitialState() {
 		return {
-			chirps: chirpStore.getAll(),
+			chirps: chirpStore.timeline(),
 			users : userStore.getAll()
 		};
 	},

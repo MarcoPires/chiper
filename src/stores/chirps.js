@@ -3,7 +3,7 @@
  */
 var constants = require('../constants');
 var store     = require('./store');
-
+var userStore = require('./users');
 
 /**
  * Chirps store extends the base store, and will handle chirps data.
@@ -23,6 +23,19 @@ var chirps = store.extend({
 		 * Bind an action when a chirp has saved, and add it to the store
 		 */
 		this.bind(constants.CHIRPED, this.add);
+	},
+	
+	/**
+	 * Will return the chirps created by the current user and by users followed by him.
+	 * @return {array} chirps list
+	 */
+	timeline: function(){
+		var currentUser = userStore.getCurrentUser();
+		var ids         = [currentUser.cid].concat(currentUser.following);
+
+		return this._data.filter(function(chirp){
+			return ids.indexOf(chirp.userId) > -1;
+		});
 	}
 
 

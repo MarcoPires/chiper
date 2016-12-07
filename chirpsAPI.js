@@ -57,4 +57,38 @@ router.route('/api/users')
 			users.toArray().map(login.makeUserSafe));
 	});
 
+/**
+ * Following user
+ * @param  {object} req
+ * @param  {object} res
+ */
+router.post('/api/follow/:id', function(req, res){
+		var id = parseInt(req.params.id, 10);
+		
+		if(req.user.following.indexOf(id) < 0){
+			req.user.following.push(id);
+			users.update(req.user.cid, req.user);
+		};
+
+		res.json(login.makeUserSafe(req.user));
+	});
+
+/**
+ * Unfollowing user
+ * @param  {object} req
+ * @param  {object} res
+ */
+router.post('/api/unfollow/:id', function(req, res){
+		var id    = parseInt(req.params.id, 10);
+		var index = req.user.following.indexOf(id);
+		
+		if(index > -1){
+			req.user.following.splice(index, 1);
+			users.update(req.user.cid, req.user);
+		};
+
+		res.json(login.makeUserSafe(req.user));
+	});
+
+
 exports.routers = router;

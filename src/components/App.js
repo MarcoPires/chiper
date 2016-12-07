@@ -2,6 +2,7 @@
  * npm modules
  */
 var React = require('react');
+var Link   = require('react-router').Link;
 
 
 
@@ -12,7 +13,9 @@ var App = React.createClass({
 			<div>
 				<div className='row'>
 					<h1>
-						Chirper
+						<Link className='logo' to={`/`}>
+							Chirper
+						</Link>
 					</h1>
 				</div>
 				<div className='row'>

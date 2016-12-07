@@ -1,29 +1,48 @@
 /**
  * npm modules
  */
-var React = require('react');
+var React  = require('react');
+var moment = require('moment');
 
 /**
  * Local module components
  */
-var ChirpBox = require('./ChirpBox');
+var Box = require('./Box');
 
 
 
 
 
 var ReactPropTypes = React.PropTypes;
+var getUserById    = function(users, userId){
+	return users.filter(function(user){ return user.cid === userId })[0];
+};
 
 var ChirpList = React.createClass({
 
 	propTypes: {
-		chirps: ReactPropTypes.array.isRequired
+		chirps : ReactPropTypes.array.isRequired,
+		users  : ReactPropTypes.array.isRequired
 	},
 
 	render: function(){
+			
 		var chirps 	= this.props.chirps;
-		var items 	= chirps.map(function(chirp){
-			return ( <ChirpBox key={ chirp.cid } chirp={ chirp } /> );
+		var users 	= this.props.users;
+		var items 	= [];
+
+		if(!chirps.length || !users.length) return <div> loading </div>
+		
+		items = chirps.map(function(chirp){
+			return (
+				<Box 
+					key       = { chirp.cid }
+					user      = { getUserById(users, chirp.userId) }
+					timestamp = { moment(chirp.$created).fromNow() }
+				>
+					{ chirp.text } 
+				</Box>
+			);
 		});
 
 		return (

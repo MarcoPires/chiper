@@ -8,6 +8,7 @@ var React = require('react');
  */
 var actions    = require('../actions');
 var chirpStore = require('../stores/chirps');
+var userStore  = require('../stores/users');
 
 /**
  * Local module components
@@ -20,18 +21,21 @@ var ChirpList  = require('./ChirpList');
 
 var Home = React.createClass({
 
+	getInitialState() {
+		return {
+			chirps: chirpStore.getAll(),
+			users : userStore.getAll()
+		};
+	},
+
 	componentDidMount: function(){
 		chirpStore.addChangeListener(this.onChange);
+		userStore.addChangeListener(this.onChange);
 	},
 
 	componentWillUnmount: function(){
 		chirpStore.removeChangeListener(this.onChange);
-	},
-
-	getInitialState() {
-		return {
-			chirps: chirpStore.getAll()
-		};
+		userStore.removeChangeListener(this.onChange);
 	},
 
 	onChange: function(){
@@ -46,7 +50,7 @@ var Home = React.createClass({
 		return (
 			<div>
 				<ChirpInput onSave={ this.saveChirp }/>
-				<ChirpList chirps={ this.state.chirps }/>
+				<ChirpList chirps={ this.state.chirps } users= { this.state.users }/>
 			</div>
 		);
 	}

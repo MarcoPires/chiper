@@ -13,7 +13,7 @@ var UserStore = store.extend({
 
 	instanceOf: 'User',
 
-	currentUser: USER,
+	currentUser: {},
 
 	init: function(){
 
@@ -29,10 +29,16 @@ var UserStore = store.extend({
 		 */
 		this.bind(constants.FOLLOWED, this.updateUser);
 		this.bind(constants.UNFOLLOWED, this.updateUser);
+
+		this.updateUser(USER);
 	},
 
 	updateUser: function(data){
 		this.currentUser = data;
+	},
+
+	getCurrentUser: function(){
+		return this.currentUser;
 	}
 });
 

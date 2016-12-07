@@ -14,11 +14,20 @@ var chirps      = require('./stores/chirps');
 /**
  * Local module components
  */
-var App = require('./components/App');
-var Home = require('./components/Home');
+var App      = require('./components/App');
+var Home     = require('./components/Home');
+var UserList = require('./components/UserList');
 
-httpService.fetchChirps();
-httpService.fetchUsers();
+
+
+
+/**
+ * Triggered all API data dependencies
+ */
+var fetchData = function(){
+	httpService.fetchChirps();
+	httpService.fetchUsers();
+};
 
 var Router     = ReactRouter.Router;
 var Route      = ReactRouter.Route;
@@ -27,10 +36,12 @@ var routes = (
 	<Router history={ ReactRouter.browserHistory }>
 		<Route path="/" component={ App }>
 			<IndexRoute component={ Home } />
-			<Route name="user" path="/user/:id" component={ App } />
+			<Route name="users" path="/users" component={ UserList } />
+			<Route name="user" path="/user/:id" component={ Home } />
 		</Route>
 	</Router>
 );
 
+fetchData();
 ReactDOM.render(routes, 
 	document.getElementById('app'));

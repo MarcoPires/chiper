@@ -1,8 +1,8 @@
 /**
  * local modules
  */
-var constants  = require('../constants');
-var store = require('./store');
+var constants = require('../constants');
+var store     = require('./store');
 
 
 /**

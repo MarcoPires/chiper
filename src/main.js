@@ -18,6 +18,7 @@ var App = require('./components/App');
 var Home = require('./components/Home');
 
 httpService.fetchChirps();
+httpService.fetchUsers();
 
 var Router     = ReactRouter.Router;
 var Route      = ReactRouter.Route;

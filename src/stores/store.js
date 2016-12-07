@@ -78,6 +78,7 @@ var storeMethods = {
 	 */
 	emitChange: function() {
 		this.emit(CHANGE_EVENT);
+		console.log("4) " + this.instanceOf + " store emitted a change");
 		return this;
 	},
 
@@ -114,7 +115,6 @@ exports.extend = function(methods){
 	 * Verify if is any compatible action binded in the store, and call it.
 	 */
 	dispatcher.register(function(action){
-		console.log("2) Dispatcher triggered -> Store listening: " + store.instanceOf);
 		var bindedAction = store.actions[action.actionType];
 		
 		if(!bindedAction) return this;

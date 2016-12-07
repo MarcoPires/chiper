@@ -23,8 +23,11 @@ dispatcher.register(function(action){
 var httpService = {
 	
 	fetchChirps: function(){
-
 		get('/api/chirps').then( actions.gotChirps.bind(actions) );
+	},	
+
+	fetchUsers: function(){
+		get('/api/users').then( actions.gotUsers.bind(actions) );
 	},
 
 	saveChirp: function(text){

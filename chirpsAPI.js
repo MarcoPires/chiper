@@ -1,8 +1,8 @@
 /**
  * npm modules
  */
-var router = require('express').Router();
-var locallyDB      = require('locallydb');
+var router    = require('express').Router();
+var locallyDB = require('locallydb');
 
 /**
  * local modules
@@ -14,6 +14,7 @@ var login = require('./login');
 
 var db     = new locallyDB('./.data');
 var chirps = db.collection('chirps');
+var users  = db.collection('users');
 
 router.route('/api/chirps')
 	.all(login.loginRequired)
@@ -43,6 +44,17 @@ router.route('/api/chirps')
 
 		id = chirps.insert(chirp);
 		res.json(chirps.get(id));
+	});
+
+router.route('/api/users')
+	/**
+	 * Get all Users
+	 * @param  {object} req
+	 * @param  {object} res
+	 */
+	.get(function(req, res){
+		res.json(
+			users.toArray().map(login.makeUserSafe));
 	});
 
 exports.routers = router;

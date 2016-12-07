@@ -24,8 +24,9 @@ gulp.task('buildCss', function () {
 		.pipe(gulp.dest('public'));
 });
 
-gulp.task('default', ['browserify', 'buildCss']);
+gulp.task('default', ['browserify']);
 
 gulp.task('watch', function(){
-	gulp.watch('src/**/*.*', ['default']);
+	gulp.watch('src/**/*.*', ['browserify']);
+	gulp.watch('assets/**/*.css', ['buildCss']);
 });

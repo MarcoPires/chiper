@@ -36,8 +36,18 @@ var chirps = store.extend({
 		return this._data.filter(function(chirp){
 			return ids.indexOf(chirp.userId) > -1;
 		});
+	},
+	
+	/**
+	 * Returns all chirps created by a given user id
+	 * @param  {number} id 
+	 * @return {array} chirps
+	 */
+	getByUserId: function(id){
+		return this._data.filter(function(chirp){
+			return chirp.userId === id;
+		});
 	}
-
 
 });
 

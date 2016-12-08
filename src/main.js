@@ -14,9 +14,10 @@ var chirps      = require('./stores/chirps');
 /**
  * Local module components
  */
-var App      = require('./components/App');
-var Home     = require('./components/Home');
-var UserList = require('./components/UserList');
+var App         = require('./components/App');
+var Home        = require('./components/Home');
+var UserList    = require('./components/UserList');
+var UserProfile = require('./components/UserProfile');
 
 
 
@@ -34,10 +35,10 @@ var Route      = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var routes = (
 	<Router history={ ReactRouter.browserHistory }>
-		<Route path="/" component={ App }>
+		<Route name="home" path="/" component={ App }>
 			<IndexRoute component={ Home } />
 			<Route name="users" path="/users" component={ UserList } />
-			<Route name="user" path="/user/:id" component={ Home } />
+			<Route name="user" path="/user/:id" component={ UserProfile } />
 		</Route>
 	</Router>
 );

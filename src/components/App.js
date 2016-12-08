@@ -2,7 +2,11 @@
  * npm modules
  */
 var React = require('react');
-var Link   = require('react-router').Link;
+
+/**
+ * Local module components
+ */
+var Navigation = require('./Navigation');
 
 
 
@@ -13,14 +17,12 @@ var App = React.createClass({
 			<div>
 				<div className='row'>
 					<h1>
-						<Link className='logo' to={`/`}>
-							Chirper
-						</Link>
+						Chirper
 					</h1>
 				</div>
 				<div className='row'>
 					<div className='three columns'>
-						Nav
+						<Navigation />
 					</div>
 					<div className='nine columns'>
 						{ this.props.children }

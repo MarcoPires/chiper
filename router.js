@@ -69,6 +69,7 @@ router.get('/logout', function(req, res){
 	/**
 	 * User the passport method logout
 	 */
+	console.log("ENTRA")
 	req.logout();
 	res.redirect('/login');
 });

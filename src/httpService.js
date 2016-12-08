@@ -51,7 +51,6 @@ var httpService = {
 	},
 
 	unfollow: function(id){
-		console.log("ENTRA", id)
 		if(id === undefined) return;
 
 		post('/api/unfollow/' + id).then( actions.unfollowed.bind(actions) );
@@ -72,7 +71,6 @@ var get = function(url){
 };
 
 var post = function(url, body){
-	console.log("AKI")
 	return fetch(url, {
 		method      : 'POST',
 		credentials : 'include',

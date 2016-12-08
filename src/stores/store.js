@@ -11,7 +11,7 @@ var dispatcher = require('../dispatcher');
 
 
 
-
+var mixinsCount  = 1;
 var CHANGE_EVENT = 'CHANGE';
 var storeMethods = {
 
@@ -108,7 +108,27 @@ var storeMethods = {
 exports.extend = function(methods){
 	var store = {
 		_data   : [],
-		actions : {}
+		actions : {},
+		mixin   : function(component) {
+			
+			var listenerName = '_change' + mixinsCount;
+			var defaults 	 = {
+				componentDidMount: function(){
+					store.addChangeListener(this[listenerName]);
+				},
+
+				componentWillUnmount: function(){
+					store.removeChangeListener(this[listenerName]);
+				}
+			};
+			
+			defaults[listenerName] = function(){
+				this.setState(this.getInitialState());
+			};
+
+			mixinsCount++;
+			return defaults;
+		}
 	};
 
 	/**

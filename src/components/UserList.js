@@ -20,24 +20,14 @@ var FollowButton = require('./FollowButton');
 
 
 var UserList = React.createClass({
+	
+	mixins: [userStore.mixin()],
 
 	getInitialState() {
 		return {
 			users       : userStore.getAll(),
 			currentUser : userStore.getCurrentUser()
 		};
-	},
-
-	componentDidMount: function(){
-		userStore.addChangeListener(this.onChange);
-	},
-
-	componentWillUnmount: function(){
-		userStore.removeChangeListener(this.onChange);
-	},
-
-	onChange: function(){
-		this.setState(this.getInitialState());
 	},
 
 	render: function(){

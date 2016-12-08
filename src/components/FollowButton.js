@@ -18,6 +18,8 @@ var FollowButton = React.createClass({
 		userId: ReactPropTypes.number.isRequired
 	},
 
+	mixins: [userStore.mixin()], 
+
 	getInitialState() {
 		var currentUser = userStore.getCurrentUser();
 
@@ -25,18 +27,6 @@ var FollowButton = React.createClass({
 			id                 : currentUser.cid,
 			currentlyFollowing : currentUser.following || []
 		};
-	},
-	
-	componentDidMount: function(){
-		userStore.addChangeListener(this.onChange);
-	},
-
-	componentWillUnmount: function(){
-		userStore.removeChangeListener(this.onChange);
-	},
-
-	onChange: function(){
-		this.setState(this.getInitialState());
 	},
 
 	follow: function(){

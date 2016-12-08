@@ -36,7 +36,18 @@ var storeMethods = {
 	 */
 	add: function(item){
 		this._data.push(item);
+		this.sortByCreationDate();
 		return this;
+	},
+	
+	/**
+	 * Sorts the collection by creation date in a descending way
+	 * @return {array}
+	 */
+	sortByCreationDate: function(){
+		return this._data.sort(function(a, b){
+			return +new Date(b.$created) - +new Date(a.$created);
+		});
 	},
 
 	/**

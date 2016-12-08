@@ -14,7 +14,14 @@ var constants  = require('./constants');
 
 dispatcher.register(function(action){
 
+
 	switch(action.actionType){
+		case constants.GET_CHIRPS:
+			httpService.startFetchChirps(action.data);
+			break;
+		case constants.GET_USERS:
+			httpService.startFetchUsers(action.data);
+			break;
 		case constants.CHIRP:
 			httpService.saveChirp(action.data);
 			break;
@@ -35,6 +42,16 @@ var httpService = {
 
 	fetchUsers: function(){
 		get('/api/users').then( actions.gotUsers.bind(actions) );
+	},
+
+	startFetchChirps: function(){
+		this.fetchChirps();
+		return setInterval(this.fetchChirps, 1000);
+	},
+
+	startFetchUsers: function(){
+		this.fetchUsers();
+		return setInterval(this.fetchUsers, 1000);
 	},
 
 	saveChirp: function(text){

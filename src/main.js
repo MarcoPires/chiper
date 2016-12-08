@@ -8,8 +8,8 @@ var ReactRouter = require('react-router');
 /**
  * local modules
  */
+var actions     = require('./actions');
 var httpService = require('./httpService');
-var chirps      = require('./stores/chirps');
 
 /**
  * Local module components
@@ -20,14 +20,12 @@ var UserList    = require('./components/UserList');
 var UserProfile = require('./components/UserProfile');
 
 
-
-
 /**
  * Triggered all API data dependencies
  */
 var fetchData = function(){
-	httpService.fetchChirps();
-	httpService.fetchUsers();
+	actions.getChirps();
+	actions.getUsers();
 };
 
 var Router     = ReactRouter.Router;
